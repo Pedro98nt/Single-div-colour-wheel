@@ -1,0 +1,64 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	min-height: 100vh;
+	margin: 0;
+	padding: max(10vh, 4rem) 2rem;
+	display: grid;
+	place-items: center;
+	background-color: #061625;
+}
+
+.wheel {
+	--h: 30deg;
+	--s: 30deg;
+	--gap: 1deg;
+	--i: calc(var(--s) - var(--gap));
+	--circle: radial-gradient(circle at center, transparent 45%, black 45%);
+	--mask: repeating-conic-gradient(from calc(var(--gap) / 2 * -1 + (var(--s) / 2)), transparent, transparent var(--gap), black var(--gap), black calc(var(--i) - var(--gap)), transparent calc(var(--i) - var(--gap)), transparent calc(var(--i) + var(--gap))), var(--circle);
+	width: 80vmin;
+	height: 80vmin;
+	position: relative;
+	filter: drop-shadow(0 0.1rem 0.4rem rgba(0, 0, 0, 0.35));
+}
+
+.wheel::after {
+	content: '';
+	position: absolute;
+	top: 0; 
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	background: radial-gradient(black, transparent 55%, transparent 65%, black 90%),
+		conic-gradient(from calc(var(--s) / 2),
+		hsl(var(--h), 50%, 50%) var(--s),
+		hsl(calc(var(--h) * 2), 50%, 50%) var(--s),
+		hsl(calc(var(--h) * 2), 50%, 50%) calc(var(--s) * 2),
+		hsl(calc(var(--h) * 3), 50%, 50%) calc(var(--s) * 2),
+		hsl(calc(var(--h) * 3), 50%, 50%) calc(var(--s) * 3),
+		hsl(calc(var(--h) * 4), 50%, 50%) calc(var(--s) * 3),
+		hsl(calc(var(--h) * 4), 50%, 50%) calc(var(--s) * 4),
+		hsl(calc(var(--h) * 5), 50%, 50%) calc(var(--s) * 4),
+		hsl(calc(var(--h) * 5), 50%, 50%) calc(var(--s) * 5),
+		hsl(calc(var(--h) * 6), 50%, 50%) calc(var(--s) * 5),
+		hsl(calc(var(--h) * 6), 50%, 50%) calc(var(--s) * 6),
+		hsl(calc(var(--h) * 7), 50%, 50%) calc(var(--s) * 6),
+		hsl(calc(var(--h) * 7), 50%, 50%) calc(var(--s) * 7),
+		hsl(calc(var(--h) * 8), 50%, 50%) calc(var(--s) * 7),
+		hsl(calc(var(--h) * 8), 50%, 50%) calc(var(--s) * 8),
+		hsl(calc(var(--h) * 9), 50%, 50%) calc(var(--s) * 8),
+		hsl(calc(var(--h) * 9), 50%, 50%) calc(var(--s) * 9),
+		hsl(calc(var(--h) * 10), 50%, 50%) calc(var(--s) * 9),
+		hsl(calc(var(--h) * 10), 50%, 50%) calc(var(--s) * 10),
+		hsl(calc(var(--h) * 11), 50%, 50%) calc(var(--s) * 10),
+		hsl(calc(var(--h) * 11), 50%, 50%) calc(var(--s) * 11),
+		hsl(calc(var(--h) * 12), 50%, 50%) calc(var(--s) * 11)
+	);
+	-webkit-mask-image: var(--mask);
+	mask-image: var(--mask);
+	-webkit-mask-composite: source-in;
+	mask-composite: intersect;
+}
